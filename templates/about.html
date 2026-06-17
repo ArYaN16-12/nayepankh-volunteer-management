@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us - NayePankh Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+
+    <a href="/"
+       class="{{ 'active' if active_page == 'home' else '' }}">
+       Home
+    </a>
+
+    <a href="/about"
+       class="{{ 'active' if active_page == 'about' else '' }}">
+       About
+    </a>
+
+    <a href="/register"
+       class="{{ 'active' if active_page == 'register' else '' }}">
+       Register
+    </a>
+
+    {% if session.get('admin') %}
+
+        <a href="/dashboard"
+           class="{{ 'active' if active_page == 'dashboard' else '' }}">
+           Dashboard
+        </a>
+
+        <a href="/volunteers"
+           class="{{ 'active' if active_page == 'volunteers' else '' }}">
+           Volunteers
+        </a>
+
+        <a href="/logout">Logout</a>
+
+    {% else %}
+
+        <a href="/admin"
+           class="{{ 'active' if active_page == 'admin' else '' }}">
+           Admin
+        </a>
+
+    {% endif %}
+
+</nav>
+    <div class="hero about-hero">
+        <h1>About NayePankh Foundation</h1>
+
+        <p>
+            Empowering communities through volunteer-driven initiatives,
+            awareness campaigns, and social impact programs.
+        </p>
+    </div>
+
+    <div class="mission">
+
+        <h2>Who We Are</h2>
+
+        <p>
+            NayePankh Foundation was established during the COVID-19 pandemic
+            with the goal of supporting communities during challenging times.
+            What started as a small initiative has grown into a youth-led
+            organization dedicated to uplifting underprivileged sections of society.
+        </p>
+
+        <p>
+            We work across multiple areas including food distribution,
+            clothing donations, menstrual hygiene awareness, educational support,
+            and community outreach programs.
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2>200K+</h2>
+            <p>Lives Impacted</p>
+        </div>
+
+        <div class="card">
+            <h2>100+</h2>
+            <p>Volunteers</p>
+        </div>
+
+        <div class="card">
+            <h2>50+</h2>
+            <p>Awareness Campaigns</p>
+        </div>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Our Mission</h2>
+
+        <p>
+            We strive to create positive social change by connecting passionate
+            volunteers with meaningful opportunities to serve communities and
+            build a better future for all.
+        </p>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Our Values</h2>
+
+        <ul>
+            <li>Community First</li>
+            <li>Empathy and Compassion</li>
+            <li>Integrity and Transparency</li>
+            <li>Inclusiveness</li>
+            <li>Youth Leadership</li>
+        </ul>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Contact</h2>
+
+        <p>Email: info@example.com</p>
+        <p>Phone: +91 98765 43210</p>
+
+    </div>
+
+    <div class="mission disclaimer">
+
+        <p>
+            This website is a student portfolio project inspired by
+            NayePankh Foundation and is not the official website.
+        </p>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 NayePankh Foundation. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

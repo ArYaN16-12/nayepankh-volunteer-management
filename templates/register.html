@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Volunteer Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+
+    <a href="/"
+       class="{{ 'active' if active_page == 'home' else '' }}">
+       Home
+    </a>
+
+    <a href="/about"
+       class="{{ 'active' if active_page == 'about' else '' }}">
+       About
+    </a>
+
+    <a href="/register"
+       class="{{ 'active' if active_page == 'register' else '' }}">
+       Register
+    </a>
+
+    {% if session.get('admin') %}
+
+        <a href="/dashboard"
+           class="{{ 'active' if active_page == 'dashboard' else '' }}">
+           Dashboard
+        </a>
+
+        <a href="/volunteers"
+           class="{{ 'active' if active_page == 'volunteers' else '' }}">
+           Volunteers
+        </a>
+
+        <a href="/logout">Logout</a>
+
+    {% else %}
+
+        <a href="/admin"
+           class="{{ 'active' if active_page == 'admin' else '' }}">
+           Admin
+        </a>
+
+    {% endif %}
+
+</nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <div class="form-container">
+
+        <h1>Volunteer Registration</h1>
+
+        <p class="form-text">
+            Join NayePankh Foundation and contribute to meaningful social impact initiatives.
+        </p>
+
+        <form action="/register" method="POST">
+
+            <label for="name">Full Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                pattern="[0-9]{10}"
+                required
+            >
+
+            <label for="city">City</label>
+            <input
+                type="text"
+                id="city"
+                name="city"
+                placeholder="Enter your city"
+            >
+
+            <label for="skills">Skills</label>
+            <input
+                type="text"
+                id="skills"
+                name="skills"
+                placeholder="Teaching, Design, Programming, Event Management..."
+            >
+
+            <label for="availability">Availability</label>
+            <select id="availability" name="availability">
+
+                <option value="Weekdays">Weekdays</option>
+                <option value="Weekends">Weekends</option>
+                <option value="Both">Both</option>
+
+            </select>
+
+            <label for="message">Why do you want to volunteer?</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Tell us about your motivation..."
+            ></textarea>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+    </div>
+
+    <footer>
+        <p>© 2026 NayePankh Foundation | Volunteer Management System</p>
+    </footer>
+
+</body>
+</html>

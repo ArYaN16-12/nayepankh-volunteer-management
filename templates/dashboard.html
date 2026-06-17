@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+
+    <a href="/"
+       class="{{ 'active' if active_page == 'home' else '' }}">
+       Home
+    </a>
+
+    <a href="/about"
+       class="{{ 'active' if active_page == 'about' else '' }}">
+       About
+    </a>
+
+    <a href="/register"
+       class="{{ 'active' if active_page == 'register' else '' }}">
+       Register
+    </a>
+
+    {% if session.get('admin') %}
+
+        <a href="/dashboard"
+           class="{{ 'active' if active_page == 'dashboard' else '' }}">
+           Dashboard
+        </a>
+
+        <a href="/volunteers"
+           class="{{ 'active' if active_page == 'volunteers' else '' }}">
+           Volunteers
+        </a>
+
+        <a href="/logout">Logout</a>
+
+    {% else %}
+
+        <a href="/admin"
+           class="{{ 'active' if active_page == 'admin' else '' }}">
+           Admin
+        </a>
+
+    {% endif %}
+
+</nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h1>Volunteer Dashboard</h1>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2>{{ total_volunteers }}</h2>
+            <p>Total Volunteers</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ weekday_volunteers }}</h2>
+            <p>Weekday Volunteers</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ weekend_volunteers }}</h2>
+            <p>Weekend Volunteers</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ both_volunteers }}</h2>
+            <p>Both</p>
+        </div>
+
+    </div>
+
+    <h2 style="text-align: center; margin-top: 40px;">
+        Recent Registrations
+    </h2>
+
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Skills</th>
+            <th>Availability</th>
+        </tr>
+
+        {% for volunteer in recent_volunteers %}
+        <tr>
+            <td>{{ volunteer.name }}</td>
+            <td>{{ volunteer.email }}</td>
+            <td>{{ volunteer.skills }}</td>
+            <td>{{ volunteer.availability }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

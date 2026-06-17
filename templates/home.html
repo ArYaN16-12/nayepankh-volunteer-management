@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NayePankh Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+
+    <a href="/"
+       class="{{ 'active' if active_page == 'home' else '' }}">
+       Home
+    </a>
+
+    <a href="/about"
+       class="{{ 'active' if active_page == 'about' else '' }}">
+       About
+    </a>
+
+    <a href="/register"
+       class="{{ 'active' if active_page == 'register' else '' }}">
+       Register
+    </a>
+
+    {% if session.get('admin') %}
+
+        <a href="/dashboard"
+           class="{{ 'active' if active_page == 'dashboard' else '' }}">
+           Dashboard
+        </a>
+
+        <a href="/volunteers"
+           class="{{ 'active' if active_page == 'volunteers' else '' }}">
+           Volunteers
+        </a>
+
+        <a href="/logout">Logout</a>
+
+    {% else %}
+
+        <a href="/admin"
+           class="{{ 'active' if active_page == 'admin' else '' }}">
+           Admin
+        </a>
+
+    {% endif %}
+
+</nav>
+
+    <div class="hero">
+
+        <h1>NayePankh Foundation</h1>
+
+        <p>
+            Empowering communities through volunteering,
+            education, and social impact initiatives.
+        </p>
+
+        <a href="/register">
+            <button>Become a Volunteer</button>
+        </a>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2>100+</h2>
+            <p>Volunteers</p>
+        </div>
+
+        <div class="card">
+            <h2>50+</h2>
+            <p>Awareness Campaigns</p>
+        </div>
+
+        <div class="card">
+            <h2>20+</h2>
+            <p>Community Programs</p>
+        </div>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Our Mission</h2>
+
+        <p>
+            We aim to create positive social change by
+            connecting passionate volunteers with meaningful
+            opportunities to serve communities.
+        </p>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Why Join Us?</h2>
+
+        <ul>
+            <li>Build leadership skills</li>
+            <li>Gain practical experience</li>
+            <li>Contribute to social impact projects</li>
+            <li>Work with passionate volunteers</li>
+        </ul>
+
+    </div>
+
+    <div class="mission">
+
+        <h2>Contact Us</h2>
+
+        <p>Email:  info@example.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Location: India</p>
+
+    </div>
+
+    <footer>
+        <p>© 2026 NayePankh Foundation. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
